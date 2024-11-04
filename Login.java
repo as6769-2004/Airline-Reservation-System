@@ -55,7 +55,7 @@ public class Login extends JFrame implements ActionListener {
         // Frame settings
         setSize(400, 250);
         setLocationRelativeTo(null); // Center the frame on the screen
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Ensures the application exits when closed
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Ensures the application exits when closed
         setVisible(true);
     }
 

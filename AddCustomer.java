@@ -110,7 +110,7 @@ public class AddCustomer extends JFrame implements ActionListener {
         setLocation(300, 150);
         setVisible(true);
         getContentPane().setBackground(new Color(235, 245, 255));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     public void actionPerformed(ActionEvent ae) {

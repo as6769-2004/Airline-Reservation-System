@@ -21,7 +21,7 @@ public class BoardingPass extends JFrame implements ActionListener {
         setTitle("Air India - Boarding Pass");
         setSize(1000, 450);
         setLocation(300, 150);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Main panel with gradient background
         JPanel mainPanel = new JPanel() {

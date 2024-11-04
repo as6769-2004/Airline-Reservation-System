@@ -17,7 +17,7 @@ public class Cancel extends JFrame implements ActionListener {
     public Cancel() {
         // Set the frame properties
         setTitle("Cancellation System");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(new Color(235, 245, 255));
         setLayout(null);
 

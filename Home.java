@@ -50,7 +50,7 @@ public class Home extends JFrame implements ActionListener {
         // Frame Settings
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize window
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Proper exit operation
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Proper exit operation
     }
 
     private JButton createModernButton(String text, int x, int y) {
