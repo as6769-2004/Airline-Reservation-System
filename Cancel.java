@@ -23,7 +23,7 @@ public class Cancel extends JFrame implements ActionListener {
 
         // Load the image
         ImageIcon imageIcon = new ImageIcon(
-                "C:\\Users\\ASUS\\Desktop\\New 2.0\\airlinemanagementsystem\\icons\\cancel.png"); // Replace with your
+                "airlinemanagementsystem\\icons\\cancel.png"); // Replace with your
                                                                                                   // image path
         Image image = imageIcon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH); // Resize if needed
         imageIcon = new ImageIcon(image);

@@ -19,7 +19,7 @@ public class JourneyDetails extends JFrame implements ActionListener {
     public JourneyDetails() {
 
         // Load the image
-        ImageIcon imageIcon = new ImageIcon("C:\\Users\\ASUS\\Desktop\\New 2.0\\airlinemanagementsystem\\icons\\details.jpg"); // Replace with your image path
+        ImageIcon imageIcon = new ImageIcon("airlinemanagementsystem\\icons\\details.jpg"); // Replace with your image path
         Image image = imageIcon.getImage().getScaledInstance(85, 85, Image.SCALE_SMOOTH); // Resize if needed
         imageIcon = new ImageIcon(image);
 
