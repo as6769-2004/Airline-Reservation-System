@@ -71,4 +71,10 @@ Airline Management System is a comprehensive desktop application designed to str
 
 ## Screenshots
 
-<img src = "https://github.com/as6769-2004/Airline-Reservation-System/blob/main/screenshots/Home.png" height = "500">&nbsp;
+<img src="https://github.com/as6769-2004/Airline-Reservation-System/blob/main/screenshots/Home.png" alt="Home" style="width: auto; height: auto;">
+<img src = "https://github.com/as6769-2004/Airline-Reservation-System/blob/main/screenshots/Flight_info.png" height = "500">&nbsp;
+<img src = "https://github.com/as6769-2004/Airline-Reservation-System/blob/main/screenshots/Add_customer.png" height = "500">&nbsp;
+<img src = "https://github.com/as6769-2004/Airline-Reservation-System/blob/main/screenshots/Book_flight.png" height = "500">&nbsp;
+<img src = "https://github.com/as6769-2004/Airline-Reservation-System/blob/main/screenshots/Jpurney_detail.png" height = "500">&nbsp;
+<img src = "https://github.com/as6769-2004/Airline-Reservation-System/blob/main/screenshots/Cancellation.png" height = "500">&nbsp;
+<img src = "https://github.com/as6769-2004/Airline-Reservation-System/blob/main/screenshots/Boarding_pass.png" height = "500">&nbsp;
