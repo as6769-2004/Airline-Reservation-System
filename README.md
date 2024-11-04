@@ -69,6 +69,7 @@ Airline Management System is a comprehensive desktop application designed to str
    - Use sample cases of *[database](https://github.com/as6769-2004/Airline-Reservation-System/blob/main/sample.sql)* if applicable.
 
 *Thats it.*
+*To start run loginpage as **javarun***
 
 ## Screenshots
 
