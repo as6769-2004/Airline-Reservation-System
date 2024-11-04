@@ -66,7 +66,8 @@ Airline Management System is a comprehensive desktop application designed to str
    
 8. **Create the Database**
    - Copy the *[SQL.sql](https://github.com/as6769-2004/Airline-Reservation-System/blob/main/SQL.sql)* code and paste in it to crete it.
-   - Use sample cases of *[database]()* if applicable
+   - Use sample cases of *[database](https://github.com/as6769-2004/Airline-Reservation-System/blob/main/sample.sql)* if applicable.
+
 *Thats it.*
 
 ## Screenshots
