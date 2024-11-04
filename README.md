@@ -7,7 +7,7 @@ Airline Management System is a comprehensive desktop application designed to str
 - **Passenger Management**: Maintains a structured database of passenger details, allowing efficient management and retrieval of information.
 - **Admin Login and Security**: Restricts sensitive operations to authorized personnel, ensuring data privacy and integrity.
 
-### File Descriptions
+## File Descriptions
 - **AddCustomer.java**: Allows the addition of new customer details to the system.
 - **BoardingPass.java**: Generates a boarding pass for each booking.
 - **BookFlight.java**: Handles flight booking operations.
@@ -40,7 +40,7 @@ Airline Management System is a comprehensive desktop application designed to str
   java -version
 
 3. **Download MySQL:**
-   - Go to the official MySQL website: [MySQL Community Server Download](https://dev.mysql.com/downloads/mysql/).
+   - Go to the official MySQL website: [MySQL Community Server Download](https://dev.mysql.com/downloads/installer/).
    - Select your operating system and download the appropriate installer.
 
 4. **Install MySQL:**
@@ -54,7 +54,19 @@ Airline Management System is a comprehensive desktop application designed to str
    - Finish the installation and ensure the MySQL service is running.
 
 6. **Verify MySQL Installation**
-
 - Open a terminal or command prompt and run the following command to check the MySQL version:
   ```bash
   mysql --version
+  
+7. **Access MySQL Command Line**
+   - Open your terminal or command prompt.
+   - Log in to MySQL by executing the following command:
+   ```bash
+   mysql -u root -p
+   
+8. **Create the Database**
+   - Copy the *[SQL.sql](https://github.com/as6769-2004/Airline-Reservation-System/blob/main/SQL.sql)* code and paste in it to crete it.
+   - Use sample cases of *[database]()* if applicable
+*Thats it.*
+
+## Screenshots
