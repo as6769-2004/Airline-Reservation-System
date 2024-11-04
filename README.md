@@ -1,4 +1,4 @@
-# AgriEasy ̌✈️
+# Airline-Reservation-System ̌✈️
 
 ## About
 Airline Management System is a comprehensive desktop application designed to streamline the management of airline operations, from customer bookings to flight schedules. This system enables users to book flights, view flight details, manage bookings, and handle passenger information with ease. Key features include:
@@ -70,3 +70,5 @@ Airline Management System is a comprehensive desktop application designed to str
 *Thats it.*
 
 ## Screenshots
+
+<img src = "[https://github.com/as6769-2004/CropCare/blob/main/Screenshots/Homepage.jpg](https://github.com/as6769-2004/Airline-Reservation-System/blob/main/screenshots/Home.png)" height = "500">&nbsp;
