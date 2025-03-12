@@ -3,162 +3,152 @@ package airlinemanagementsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.net.URI;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class BoardingPass extends JFrame implements ActionListener {
 
     private JTextField tfpnr;
-    private JLabel tfname, tfnationality, lblsrc, lbldest, labelfname, labelfcode, labeldate;
-    private JButton fetchButton, downloadButton;
+    private JLabel bookingIdLabel, flightIdLabel, passengerIdLabel, bookingDateLabel, seatNumberLabel, bookingStatusLabel;
 
-    @SuppressWarnings("unused")
+    private JLabel nameLabel, aadharLabel, nationalityLabel, addressLabel, genderLabel, phoneLabel, emailLabel, dobLabel;
+
+    private JButton fetchBtn;
+
     public BoardingPass() {
-        // Frame setup
-        setTitle("Air India - Boarding Pass");
-        setSize(1000, 450);
-        setLocation(300, 150);
+        setTitle("Booking + Full Passenger Details");
+        setSize(850, 720);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Main panel with gradient background
-        JPanel mainPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Graphics2D g2d = (Graphics2D) g;
-                GradientPaint gp = new GradientPaint(0, 0, Color.WHITE, 0, getHeight(), new Color(200, 230, 250));
-                g2d.setPaint(gp);
-                g2d.fillRect(0, 0, getWidth(), getHeight());
-            }
-        };
-        mainPanel.setLayout(null);
-        add(mainPanel);
+        JPanel panel = new JPanel(null);
+        panel.setBackground(Color.WHITE);
+        add(panel);
 
-        // Heading
-        JLabel heading = new JLabel("AIR INDIA", JLabel.CENTER);
-        heading.setBounds(360, 10, 300, 40);
-        heading.setFont(new Font("Segoe UI", Font.BOLD, 32));
-        mainPanel.add(heading);
+        JLabel heading = new JLabel("Lookup Booking & Passenger by PNR", SwingConstants.CENTER);
+        heading.setFont(new Font("SansSerif", Font.BOLD, 24));
+        heading.setBounds(180, 20, 500, 30);
+        panel.add(heading);
 
-        JLabel subheading = new JLabel("Boarding Pass", JLabel.CENTER);
-        subheading.setBounds(360, 60, 300, 30);
-        subheading.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-        subheading.setForeground(new Color(0, 102, 204));
-        mainPanel.add(subheading);
-
-        // PNR details label
-        JLabel lblaadhar = new JLabel("PNR DETAILS");
-        lblaadhar.setBounds(60, 100, 150, 25);
-        lblaadhar.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-        mainPanel.add(lblaadhar);
+        JLabel lblpnr = new JLabel("Enter PNR Number:");
+        lblpnr.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        lblpnr.setBounds(60, 80, 160, 25);
+        panel.add(lblpnr);
 
         tfpnr = new JTextField();
-        tfpnr.setBounds(220, 100, 150, 25);
-        mainPanel.add(tfpnr);
+        tfpnr.setBounds(220, 80, 200, 25);
+        panel.add(tfpnr);
 
-        fetchButton = new JButton("Fetch Details");
-        fetchButton.setBounds(380, 100, 120, 25);
-        fetchButton.setBackground(new Color(0, 102, 204));
-        fetchButton.setForeground(Color.WHITE);
-        fetchButton.addActionListener(this);
-        mainPanel.add(fetchButton);
+        fetchBtn = new JButton("Fetch Details");
+        fetchBtn.setBounds(440, 80, 150, 25);
+        fetchBtn.setBackground(new Color(0, 102, 204));
+        fetchBtn.setForeground(Color.WHITE);
+        fetchBtn.addActionListener(this);
+        panel.add(fetchBtn);
 
-        // Passenger details layout
-        setupLabel(mainPanel, "NAME", 60, 140);
-        tfname = setupValueLabel(mainPanel, 220, 140);
+        int y = 140;
+        bookingIdLabel = createField(panel, "Booking ID", y);
+        flightIdLabel = createField(panel, "Flight ID", y += 30);
+        passengerIdLabel = createField(panel, "Passenger ID", y += 30);
+        bookingDateLabel = createField(panel, "Booking Date", y += 30);
+        seatNumberLabel = createField(panel, "Seat Number", y += 30);
+        bookingStatusLabel = createField(panel, "Booking Status", y += 30);
 
-        setupLabel(mainPanel, "NATIONALITY", 60, 180);
-        tfnationality = setupValueLabel(mainPanel, 220, 180);
+        y += 40; // gap
 
-        setupLabel(mainPanel, "SRC", 60, 220);
-        lblsrc = setupValueLabel(mainPanel, 220, 220);
-
-        setupLabel(mainPanel, "DEST", 380, 220);
-        lbldest = setupValueLabel(mainPanel, 540, 220);
-
-        setupLabel(mainPanel, "Flight Name", 60, 260);
-        labelfname = setupValueLabel(mainPanel, 220, 260);
-
-        setupLabel(mainPanel, "Flight Code", 380, 260);
-        labelfcode = setupValueLabel(mainPanel, 540, 260);
-
-        setupLabel(mainPanel, "Date", 60, 300);
-        labeldate = setupValueLabel(mainPanel, 220, 300);
-
-        // Image on the right side
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("airlinemanagementsystem/icons/airindia.png"));
-        Image i2 = i1.getImage().getScaledInstance(250, 200, Image.SCALE_SMOOTH);
-        JLabel lblimage = new JLabel(new ImageIcon(i2));
-        lblimage.setBounds(700, 20, 250, 200);
-        mainPanel.add(lblimage);
-
-        // Add download button
-        downloadButton = new JButton("Download");
-        downloadButton.setBounds(380, 340, 120, 25);
-        downloadButton.setBackground(new Color(0, 102, 204));
-        downloadButton.setForeground(Color.WHITE);
-        downloadButton.addActionListener(e -> {
-            // Redirect to the download page
-            try {
-                Desktop.getDesktop().browse(new URI("http://localhost:8080/downloadBoardingPass.html"));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
-        mainPanel.add(downloadButton);
+        nameLabel = createField(panel, "Name", y += 30);
+        aadharLabel = createField(panel, "Aadhar Number", y += 30);
+        nationalityLabel = createField(panel, "Nationality", y += 30);
+        addressLabel = createField(panel, "Address", y += 30);
+        genderLabel = createField(panel, "Gender", y += 30);
+        phoneLabel = createField(panel, "Phone", y += 30);
+        emailLabel = createField(panel, "Email", y += 30);
+        dobLabel = createField(panel, "Date of Birth", y += 30);
 
         setVisible(true);
     }
 
-    // Helper function to set up a label with common properties
-    private void setupLabel(JPanel panel, String text, int x, int y) {
-        JLabel label = new JLabel(text);
-        label.setBounds(x, y, 150, 25);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-        panel.add(label);
-    }
+    private JLabel createField(JPanel panel, String label, int y) {
+        JLabel lbl = new JLabel(label + ":");
+        lbl.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        lbl.setBounds(60, y, 150, 25);
+        panel.add(lbl);
 
-    // Helper function to set up a label for displaying values
-    private JLabel setupValueLabel(JPanel panel, int x, int y) {
-        JLabel label = new JLabel();
-        label.setBounds(x, y, 150, 25);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-        panel.add(label);
-        return label;
+        JLabel val = new JLabel();
+        val.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        val.setBounds(220, y, 550, 25);
+        panel.add(val);
+
+        return val;
     }
 
     @Override
-    public void actionPerformed(ActionEvent ae) {
-        String pnr = tfpnr.getText();
+    public void actionPerformed(ActionEvent e) {
+        String pnr = tfpnr.getText().trim();
 
-        try (Connection connection = new DatabaseConnection().getConnection()) {
-            String query = "SELECT p.name, p.nationality, f.departure, f.arrival, b.flight_name, b.flight_id, b.booking_date " +
-                           "FROM booking b " +
-                           "JOIN passenger p ON b.aadhar = p.aadhar " +
-                           "JOIN flight f ON b.flight_id = f.flight_id " +
-                           "WHERE b.pnr_number = ?";
-            PreparedStatement pstmt = connection.prepareStatement(query);
-            pstmt.setString(1, pnr);
+        if (pnr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a PNR number.");
+            return;
+        }
 
-            ResultSet rs = pstmt.executeQuery();
+        try (Connection conn = new DatabaseConnection().getConnection()) {
+
+            // Step 1: Fetch from booking
+            String bookingQuery = "SELECT * FROM booking WHERE pnr_number = ?";
+            PreparedStatement pst = conn.prepareStatement(bookingQuery);
+            pst.setString(1, pnr);
+            ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-                tfname.setText(rs.getString("name"));
-                tfnationality.setText(rs.getString("nationality"));
-                lblsrc.setText(rs.getString("departure"));
-                lbldest.setText(rs.getString("arrival"));
-                labelfname.setText(rs.getString("flight_name"));
-                labelfcode.setText(rs.getString("flight_id"));
-                labeldate.setText(rs.getString("booking_date")); // Use booking_date for display
+                int bookingId = rs.getInt("booking_id");
+                int flightId = rs.getInt("flight_id");
+                int passengerId = rs.getInt("passenger_id");
+
+                bookingIdLabel.setText(String.valueOf(bookingId));
+                flightIdLabel.setText(String.valueOf(flightId));
+                passengerIdLabel.setText(String.valueOf(passengerId));
+                bookingDateLabel.setText(rs.getString("booking_date"));
+                seatNumberLabel.setText(rs.getString("seat_number"));
+                bookingStatusLabel.setText(rs.getString("booking_status"));
+
+                // Step 2: Fetch passenger details using passenger_id
+                String passengerQuery = "SELECT * FROM passenger WHERE passenger_id = ?";
+                PreparedStatement pst2 = conn.prepareStatement(passengerQuery);
+                pst2.setInt(1, passengerId);
+                ResultSet rs2 = pst2.executeQuery();
+
+                if (rs2.next()) {
+                    nameLabel.setText(rs2.getString("name"));
+                    aadharLabel.setText(rs2.getString("aadhar"));
+                    nationalityLabel.setText(rs2.getString("nationality"));
+                    addressLabel.setText(rs2.getString("address"));
+                    genderLabel.setText(rs2.getString("gender"));
+                    phoneLabel.setText(rs2.getString("phone"));
+                    emailLabel.setText(rs2.getString("email"));
+                    dobLabel.setText(rs2.getString("date_of_birth"));
+                } else {
+                    nameLabel.setText("Not Found");
+                    aadharLabel.setText("-");
+                    nationalityLabel.setText("-");
+                    addressLabel.setText("-");
+                    genderLabel.setText("-");
+                    phoneLabel.setText("-");
+                    emailLabel.setText("-");
+                    dobLabel.setText("-");
+                }
+
+                rs2.close();
+                pst2.close();
+
             } else {
-                JOptionPane.showMessageDialog(this, "Please enter a correct PNR.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No booking found for the provided PNR.");
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error retrieving data. Please try again.", "Database Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+
+            rs.close();
+            pst.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Database error occurred.");
         }
     }
 

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private String url = "jdbc:mysql://localhost:3306/airlinemanagement"; // Update your database URL
+    private String url = "jdbc:mysql://localhost:3306/airlinemanagement_updated"; // Update your database URL
     private String user = "root"; // Update your username
     private String password = "9709303105"; // Update your password
 

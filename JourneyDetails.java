@@ -6,115 +6,82 @@ import java.sql.*;
 import java.awt.event.*;
 
 public class JourneyDetails extends JFrame implements ActionListener {
-    JLabel imageLabel;
     private JTextField pnrField, aadharField;
     private JButton showButton;
-    private JPanel detailsPanel; // Panel to display journey details
-    private JScrollPane scrollPane; // Scroll pane for details
-    private JRadioButton pnrOption, aadharOption; // Options to choose search criteria
-    private static final int FRAME_WIDTH = 800;
-    private static final int FRAME_HEIGHT = 600;
+    private JPanel detailsPanel;
+    private JScrollPane scrollPane;
+    private JRadioButton pnrOption, aadharOption;
 
-    @SuppressWarnings("unused")
     public JourneyDetails() {
+        setTitle("Journey Details");
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Fullscreen
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BorderLayout());
 
-        // Load the image
-        ImageIcon imageIcon = new ImageIcon("airlinemanagementsystem\\icons\\details.jpg"); // Replace with your image path
-        Image image = imageIcon.getImage().getScaledInstance(85, 85, Image.SCALE_SMOOTH); // Resize if needed
-        imageIcon = new ImageIcon(image);
+        // Top panel for search
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        topPanel.setBackground(new Color(230, 240, 255));
 
-        // Add the image label
-        imageLabel = new JLabel(imageIcon);
-        imageLabel.setBounds(600, 0, 150, 150); // Position on the center-left
-        add(imageLabel);
-
-        // Set up the frame properties
-        getContentPane().setBackground(Color.WHITE);
-        setLayout(null);
-
-        // Title label
         JLabel titleLabel = new JLabel("Journey Details");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setBounds(50, 20, 300, 30); // Positioning the title
-        add(titleLabel);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
+        topPanel.add(titleLabel);
 
-        // Label for search options
-        JLabel lblSearch = new JLabel("Search by:");
-        lblSearch.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        lblSearch.setBounds(50, 60, 100, 25);
-        add(lblSearch);
+        topPanel.add(new JLabel(" | Search by:"));
 
-        // Radio buttons for search criteria
-        pnrOption = new JRadioButton("PNR");
-        pnrOption.setSelected(true);
-        pnrOption.setBounds(50, 90, 60, 25);
-        add(pnrOption);
-
+        pnrOption = new JRadioButton("PNR", true);
         aadharOption = new JRadioButton("Aadhar");
-        aadharOption.setBounds(120, 90, 70, 25);
-        add(aadharOption);
-
         ButtonGroup group = new ButtonGroup();
         group.add(pnrOption);
         group.add(aadharOption);
+        topPanel.add(pnrOption);
+        topPanel.add(aadharOption);
 
-        // TextField for PNR input
-        pnrField = new JTextField();
-        pnrField.setBounds(200, 90, 120, 25);
-        add(pnrField);
+        pnrField = new JTextField(10);
+        aadharField = new JTextField(10);
+        aadharField.setVisible(false);
 
-        // TextField for Aadhar input
-        aadharField = new JTextField();
-        aadharField.setBounds(200, 90, 120, 25);
-        aadharField.setVisible(false); // Hide Aadhar field initially
-        add(aadharField);
+        topPanel.add(pnrField);
+        topPanel.add(aadharField);
 
-        // Button to show details
         showButton = new JButton("Show Details");
         showButton.setBackground(Color.BLACK);
         showButton.setForeground(Color.WHITE);
-        showButton.setBounds(330, 90, 120, 25);
-        showButton.addActionListener(this);
-        add(showButton);
+        topPanel.add(showButton);
 
-        // Panel to display journey details
+        add(topPanel, BorderLayout.NORTH);
+
+        // Main scrollable panel
         detailsPanel = new JPanel();
-        detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS)); // Vertical layout
+        detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
         detailsPanel.setBackground(Color.WHITE);
 
-        // Add a scroll pane
         scrollPane = new JScrollPane(detailsPanel);
-        scrollPane.setBounds(50, 130, 700, 400); // Set scroll pane bounds
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); // Scroll bar as needed
-        scrollPane.setBorder(BorderFactory.createTitledBorder("Journey Details")); // Add a border for clarity
-        add(scrollPane);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Passenger Journey Records"));
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        add(scrollPane, BorderLayout.CENTER);
 
-        // ActionListener to toggle between PNR and Aadhar input fields
-        pnrOption.addActionListener(e -> toggleInputFields(true));
-        aadharOption.addActionListener(e -> toggleInputFields(false));
-
-        setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        setLocation(400, 150);
-        setVisible(true);
-        getContentPane().setBackground(new Color(235, 245, 255));
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close operation
+        // Add listeners
+        showButton.addActionListener(this);
+        pnrOption.addActionListener(_ -> toggleInputFields(true));
+        aadharOption.addActionListener(_ -> toggleInputFields(false));
     }
 
     private void toggleInputFields(boolean isPnrSelected) {
         pnrField.setVisible(isPnrSelected);
         aadharField.setVisible(!isPnrSelected);
         if (isPnrSelected) {
-            pnrField.requestFocus(); // Focus on PNR input
+            pnrField.requestFocus();
         } else {
-            aadharField.requestFocus(); // Focus on Aadhar input
+            aadharField.requestFocus();
         }
+        revalidate();
+        repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String searchValue = null;
+        String searchValue;
 
-        // Validate input fields
         if (pnrOption.isSelected()) {
             searchValue = pnrField.getText().trim();
             if (searchValue.isEmpty()) {
@@ -129,17 +96,15 @@ public class JourneyDetails extends JFrame implements ActionListener {
             }
         }
 
-        detailsPanel.removeAll(); // Clear previous details
-        detailsPanel.revalidate(); // Refresh panel
-        detailsPanel.repaint();
+        detailsPanel.removeAll();
 
         try {
             String query = buildQuery();
             DatabaseConnection dbConnection = new DatabaseConnection();
             Connection conn = dbConnection.getConnection();
-            if (conn != null) { // Check if the connection is successful
-                PreparedStatement ps = conn.prepareStatement(query); // Use PreparedStatement for safety
-                ps.setString(1, searchValue); // Set the search parameter
+            if (conn != null) {
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, searchValue);
                 ResultSet rs = ps.executeQuery();
 
                 if (!rs.isBeforeFirst()) {
@@ -147,20 +112,17 @@ public class JourneyDetails extends JFrame implements ActionListener {
                     return;
                 }
 
-                // Loop through booking results to get details
                 while (rs.next()) {
-                    // Create a card for each booking detail
                     JPanel card = createDetailCard(rs);
-                    detailsPanel.add(card); // Add card to details panel
+                    detailsPanel.add(card);
+                    detailsPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacing
                 }
 
-                detailsPanel.revalidate(); // Refresh panel after adding new details
+                detailsPanel.revalidate();
                 detailsPanel.repaint();
-
-                // Close resources
                 rs.close();
                 ps.close();
-                conn.close(); // Close the database connection
+                conn.close();
             } else {
                 JOptionPane.showMessageDialog(this, "Database connection failed.", "Connection Error",
                         JOptionPane.ERROR_MESSAGE);
@@ -173,73 +135,93 @@ public class JourneyDetails extends JFrame implements ActionListener {
     }
 
     private String buildQuery() {
-        if (pnrOption.isSelected()) {
-            return "SELECT b.flight_id, b.pnr_number, b.aadhar, "
-                    + "f.flight_number, f.flight_name, "
-                    + "f.departure, f.arrival, "
-                    + "f.price, f.journey_time, "
-                    + "f.departure_date, f.arrival_date "
-                    + "FROM booking b "
-                    + "JOIN flight f ON b.flight_id = f.flight_id "
-                    + "WHERE b.pnr_number = ?";
-        } else {
-            return "SELECT b.flight_id, b.pnr_number, b.aadhar, "
-                    + "f.flight_number, f.flight_name, "
-                    + "f.departure, f.arrival, "
-                    + "f.price, f.journey_time, "
-                    + "f.departure_date, f.arrival_date "
-                    + "FROM booking b "
-                    + "JOIN flight f ON b.flight_id = f.flight_id "
-                    + "WHERE b.aadhar = ?";
-        }
+        return "SELECT b.pnr_number, b.booking_date, b.seat_number, b.booking_status, " +
+                "f.flight_number, f.flight_name, f.travel_date, f.journey_time, f.price, f.departure_date, f.arrival_date, "
+                +
+                "p.name, p.aadhar, p.nationality, p.gender, p.phone, p.email " +
+                "FROM booking b " +
+                "JOIN passenger p ON b.passenger_id = p.passenger_id " +
+                "JOIN flight f ON b.flight_id = f.flight_id " +
+                (pnrOption.isSelected() ? "WHERE b.pnr_number = ?" : "WHERE p.aadhar = ?");
     }
 
     private JPanel createDetailCard(ResultSet rs) throws SQLException {
-        JPanel card = new JPanel();
-        card.setLayout(new GridLayout(0, 2, 10, 10));
-        card.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
-        card.setBackground(Color.WHITE);
-        card.setPreferredSize(new Dimension(680, 100));
+        JPanel card = new JPanel(new GridLayout(0, 4, 20, 20)); // 4 columns, more vertical spacing
+        card.setBackground(new Color(240, 248, 255)); // light blue
 
-        // Adding labels and values from booking details
-        card.add(new JLabel("PNR:"));
-        card.add(new JLabel(rs.getString("pnr_number"))); // Show PNR
+        // Make container bigger
+        card.setPreferredSize(new Dimension(1000, 600)); // increase width & height
+        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 500)); // stretch to fit panel
 
-        card.add(new JLabel("Flight ID:"));
-        card.add(new JLabel(rs.getString("flight_id")));
+        // Add margin and border
+        card.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(150, 150, 150), 2),
+                BorderFactory.createEmptyBorder(25, 25, 25, 25) // top, left, bottom, right padding
+        ));
 
-        card.add(new JLabel("Flight Number:"));
-        card.add(new JLabel(rs.getString("flight_number")));
+        Font labelFont = new Font("Segoe UI", Font.BOLD, 18); // Larger text
+        Font valueFont = new Font("Segoe UI", Font.PLAIN, 18);
 
-        card.add(new JLabel("Flight Name:"));
-        card.add(new JLabel(rs.getString("flight_name")));
+        // Fill in label-value fields
+        card.add(createLabel("PNR:", labelFont));
+        card.add(createValue(rs.getString("pnr_number"), valueFont));
+        card.add(createLabel("Booking Date:", labelFont));
+        card.add(createValue(rs.getString("booking_date"), valueFont));
 
-        card.add(new JLabel("Departure:"));
-        card.add(new JLabel(rs.getString("departure")));
+        card.add(createLabel("Seat Number:", labelFont));
+        card.add(createValue(rs.getString("seat_number"), valueFont));
+        card.add(createLabel("Booking Status:", labelFont));
+        card.add(createValue(rs.getString("booking_status"), valueFont));
 
-        card.add(new JLabel("Arrival:"));
-        card.add(new JLabel(rs.getString("arrival")));
+        card.add(createLabel("Passenger Name:", labelFont));
+        card.add(createValue(rs.getString("name"), valueFont));
+        card.add(createLabel("Aadhar:", labelFont));
+        card.add(createValue(rs.getString("aadhar"), valueFont));
 
-        card.add(new JLabel("Aadhar:"));
-        card.add(new JLabel(rs.getString("aadhar"))); // Show Aadhar
+        card.add(createLabel("Nationality:", labelFont));
+        card.add(createValue(rs.getString("nationality"), valueFont));
+        card.add(createLabel("Gender:", labelFont));
+        card.add(createValue(rs.getString("gender"), valueFont));
 
-        // Adding flight price and journey details
-        card.add(new JLabel("Price:"));
-        card.add(new JLabel(String.format("₹%.2f", rs.getDouble("price"))));
+        card.add(createLabel("Phone:", labelFont));
+        card.add(createValue(rs.getString("phone"), valueFont));
+        card.add(createLabel("Email:", labelFont));
+        card.add(createValue(rs.getString("email"), valueFont));
 
-        card.add(new JLabel("Journey Time:"));
-        card.add(new JLabel(rs.getString("journey_time")));
+        card.add(createLabel("Flight Number:", labelFont));
+        card.add(createValue(rs.getString("flight_number"), valueFont));
+        card.add(createLabel("Flight Name:", labelFont));
+        card.add(createValue(rs.getString("flight_name"), valueFont));
 
-        card.add(new JLabel("Departure Date:"));
-        card.add(new JLabel(rs.getString("departure_date")));
+        card.add(createLabel("Price:", labelFont));
+        card.add(createValue("₹" + rs.getDouble("price"), valueFont));
+        card.add(createLabel("Journey Time:", labelFont));
+        card.add(createValue(rs.getString("journey_time"), valueFont));
 
-        card.add(new JLabel("Arrival Date:"));
-        card.add(new JLabel(rs.getString("arrival_date")));
+        card.add(createLabel("Departure Date:", labelFont));
+        card.add(createValue(rs.getString("departure_date"), valueFont));
+        card.add(createLabel("Arrival Date:", labelFont));
+        card.add(createValue(rs.getString("arrival_date"), valueFont));
 
         return card;
     }
 
+    // Utility methods for label and value with styling
+    private JLabel createLabel(String text, Font font) {
+        JLabel label = new JLabel(text);
+        label.setFont(font);
+        label.setForeground(new Color(0, 51, 102)); // dark blue
+        return label;
+    }
+
+    private JLabel createValue(String text, Font font) {
+        JLabel value = new JLabel(text);
+        value.setFont(font);
+        value.setForeground(Color.DARK_GRAY);
+        return value;
+    }
+
     public static void main(String[] args) {
-        new JourneyDetails();
+        SwingUtilities.invokeLater(() -> new JourneyDetails().setVisible(true));
     }
 }

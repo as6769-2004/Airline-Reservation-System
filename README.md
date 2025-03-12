@@ -1,4 +1,4 @@
-# AgriEasy ̌✈️
+# AgriEasy ✈️
 
 ## About
 Airline Management System is a comprehensive desktop application designed to streamline the management of airline operations, from customer bookings to flight schedules. This system enables users to book flights, view flight details, manage bookings, and handle passenger information with ease. Key features include:
@@ -27,46 +27,50 @@ Airline Management System is a comprehensive desktop application designed to str
 - *Java Swing or JavaFX*: Provides a graphical user interface for an intuitive and user-friendly experience.
 - *Git*: For version control and collaboration during development.
 
-
 ## Setup Instructions
 
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/as6769-2004/Airline-Reservation-System.git
-2. **Install Java**
-- Download and install the Java Development Kit (JDK) from the official Oracle website: [Java JDK Download](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
-- After installation, verify your Java installation by running:
-  ```bash
-  java -version
+   ```
 
-3. **Download MySQL:**
-   - Go to the official MySQL website: [MySQL Community Server Download](https://dev.mysql.com/downloads/installer/).
+2. **Install Java**
+   - Download and install the Java Development Kit (JDK) from the official Oracle website: [Java JDK Download](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+   - After installation, verify your Java installation by running:
+     ```bash
+     java -version
+     ```
+
+3. **Download MySQL**
+   - Go to the official MySQL website: [MySQL Community Server Download](https://dev.mysql.com/downloads/installer/)
    - Select your operating system and download the appropriate installer.
 
-4. **Install MySQL:**
+4. **Install MySQL**
    - Run the installer and follow the on-screen instructions.
-   - During installation, you will be prompted to configure the MySQL server. Here are some key steps:
+   - During installation:
      - Choose a setup type (Developer Default is recommended).
-     - Set the root password (remember this password for future database access).
-     - Choose to enable MySQL Server as a service.
+     - Set the root password (remember this password).
+     - Enable MySQL Server as a service.
 
-5. **Complete the Installation:**
-   - Finish the installation and ensure the MySQL service is running.
+5. **Verify MySQL Installation**
+   ```bash
+   mysql --version
+   ```
 
-6. **Verify MySQL Installation**
-- Open a terminal or command prompt and run the following command to check the MySQL version:
-  ```bash
-  mysql --version
-  
-7. **Access MySQL Command Line**
-   - Open your terminal or command prompt.
-   - Log in to MySQL by executing the following command:
+6. **Access MySQL Command Line**
    ```bash
    mysql -u root -p
+   ```
+
+7. **Create the Database**
+   Copy and execute the following SQL to set up the schema:
+
    
-8. **Create the Database**
-   - Copy the *[SQL.sql](https://github.com/as6769-2004/Airline-Reservation-System/blob/main/SQL.sql)* code and paste in it to crete it.
-   - Use sample cases of *[database]()* if applicable
-*Thats it.*
+
+   - Use sample data from *[Database.sql](https://github.com/as6769-2004/Airline-Reservation-System/blob/main/SQL_Updated.sql)* if applicable.
+
+✅ *That's it!*
 
 ## Screenshots
+
+<!-- Preserve your existing images here -->
