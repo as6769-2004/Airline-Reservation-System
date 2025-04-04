@@ -1,4 +1,4 @@
-# AgriEasy ✈️
+# Airline Management System ✈️
 
 ## About
 Airline Management System is a comprehensive desktop application designed to streamline the management of airline operations, from customer bookings to flight schedules. This system enables users to book flights, view flight details, manage bookings, and handle passenger information with ease. Key features include:
