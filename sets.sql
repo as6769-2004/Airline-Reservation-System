@@ -7,7 +7,7 @@ SELECT city, country, 'Arrival' AS type
 FROM airport 
 WHERE airport_id IN (SELECT arrival_airport_id FROM flight);
 
--- 2. EXCEPT/MINUS - Passengers who booked but gave NO feedback
+-- 2. EXCEPT/MINUS - Passengers who booked but gave NO feedbacks
 SELECT passenger_id, name, email 
 FROM passenger
 WHERE passenger_id IN (SELECT passenger_id FROM booking)
