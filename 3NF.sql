@@ -16,7 +16,7 @@ INSERT INTO passenger_3NF (passenger_id, name, aadhar, date_of_birth, gender, em
 (5, 'Karan L.', '123456789005', '2001-05-05', 'Male', 'karan5@example.com', '9876500005'),
 (6, 'Priya D.', '123456789006', '2000-06-06', 'Female', 'priya6@example.com', '9876500006'),
 (7, 'Vikram T.', '123456789007', '2002-07-07', 'Male', 'vikram7@example.com', '9876500007'),
-(8, 'Anjali S.', '123456789008', '2001-08-08', 'Female', 'anjali8@example.com', '9876500008'),
+(8, 'Anjali S', '123456789008', '2001-08-08', 'Female', 'anjali8@example.com', '9876500008'),
 (9, 'Rohan P.', '123456789009', '2000-09-09', 'Male', 'rohan9@example.com', '9876500009'),
 (10, 'Meera K.', '123456789010', '2002-10-10', 'Female', 'meera10@example.com', '9876500010'),
 (11, 'Aditya S.', '123456789011', '2000-01-01', 'Male', 'aditya11@example.com', '9876500011'),
