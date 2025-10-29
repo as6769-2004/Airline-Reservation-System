@@ -80,7 +80,6 @@ BEGIN
         -- Calculate points: 1 point per 100 rupees spent
         SET v_points = FLOOR(v_total_spent / 100);
         
-        -- Update passenger loyalty points
         UPDATE passenger 
         SET loyalty_points = v_points
         WHERE passenger_id = v_passenger_id;
