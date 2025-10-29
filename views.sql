@@ -14,7 +14,7 @@ FROM flight f
 JOIN airport dep ON f.departure_airport_id = dep.airport_id
 JOIN airport arr ON f.arrival_airport_id = arr.airport_id;
 
--- Query the view
+-- Query the views
 SELECT * FROM vw_flight_schedule WHERE travel_date >= '2025-11-01';
 
 
