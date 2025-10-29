@@ -13,7 +13,7 @@ CREATE TABLE passenger_1NF (
 );
 
 INSERT INTO passenger_1NF (passenger_id, name, aadhar, nationality, address, gender, phone, email, date_of_birth) VALUES
-(1, 'Aditya S.', '123456789001', 'Indian', 'Delhi, India', 'Male', '9876500001', 'aditya1@example.com', '2000-01-01'),
+(1, 'Aditya S.S', '123456789001', 'Indian', 'Delhi, India', 'Male', '9876500001', 'aditya1@example.com', '2000-01-01'),
 (2, 'Riya K.', '123456789002', 'Indian', 'Mumbai, India', 'Female', '9876500002', 'riya2@example.com', '2001-02-02'),
 (3, 'Arjun M.', '123456789003', 'Indian', 'Bangalore, India', 'Male', '9876500003', 'arjun3@example.com', '2000-03-03'),
 (4, 'Sneha P.', '123456789004', 'Indian', 'Chennai, India', 'Female', '9876500004', 'sneha4@example.com', '2002-04-04'),
