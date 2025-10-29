@@ -122,7 +122,6 @@ WHERE p.passenger_id = b.passenger_id
 -- 9. NON-EQUI JOIN
 -- Join based on conditions other than equality
 
-
 -- Example: Find flights with prices within a certain range of another flight
 SELECT 
     f1.flight_number AS flight1,
