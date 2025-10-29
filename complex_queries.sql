@@ -17,7 +17,6 @@ JOIN airport arr_airport ON f.arrival_airport_id = arr_airport.airport_id
 WHERE dep_airport.country != arr_airport.country
 ORDER BY f.price DESC;
 
--- 2. Find flights with above-average prices and their booking count
 
 SELECT 
     f.flight_number,
