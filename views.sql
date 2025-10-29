@@ -18,7 +18,7 @@ JOIN airport arr ON f.arrival_airport_id = arr.airport_id;
 SELECT * FROM vw_flight_schedule WHERE travel_date >= '2025-11-01';
 
 
--- 2. View with Aggregation - Passenger booking summary
+-- 2. View with Aggregation - Passenger b ooking summary
 CREATE OR REPLACE VIEW vw_passenger_summary AS
 SELECT 
     p.passenger_id,
