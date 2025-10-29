@@ -26,6 +26,7 @@ BEGIN
         WHERE flight_id = NEW.flight_id;
     END IF;
     
+    
     -- If booking changed from Cancelled to Confirmed
     IF OLD.booking_status = 'Cancelled' AND NEW.booking_status = 'Confirmed' THEN
         UPDATE flight 
