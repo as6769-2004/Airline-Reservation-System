@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS passenger (
     date_of_birth DATE
 );
 
+
 CREATE TABLE IF NOT EXISTS airport (
     airport_id INT AUTO_INCREMENT PRIMARY KEY,
     airport_code VARCHAR(3) NOT NULL,
