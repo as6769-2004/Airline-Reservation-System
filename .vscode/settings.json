@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        "airlinemanagementsystem",
+        "src"
+    ],
+    "java.project.outputPath": "airlinemanagementsystem/bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
+}
