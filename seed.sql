@@ -22,7 +22,7 @@ INSERT INTO airport (airport_code, airport_name, city, country) VALUES
 ('JAI', 'Jaipur International Airport', 'Jaipur', 'India'),
 ('LKO', 'Chaudhary Charan Singh International Airport', 'Lucknow', 'India'),
 ('TRV', 'Trivandrum International Airport', 'Thiruvananthapuram', 'India'),
-('IXC', 'Chandigarh International Airport', 'Chandigarh', 'India'),
+('IXC', 'Chandigarh International Airport', 'Chandigadh', 'India'),
 ('VNS', 'Lal Bahadur Shastri Airport', 'Varanasi', 'India')
 ON DUPLICATE KEY UPDATE airport_name = VALUES(airport_name);
 
