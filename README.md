@@ -10,7 +10,7 @@ A complete airline management system built with Next.js, MySQL, and Tailwind CSS
 - ✅ View booking history
 - ✅ Cancel bookings
 - ✅ Update profile information
-- ✅ Beautiful, responsive UI
+- ✅ Beautiful, responsive UI/UX
 
 ### For Admins
 - ✅ Admin dashboard with analytics
